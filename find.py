@@ -37,19 +37,23 @@ def checkDomainsByGoDaddy(domains, filteredDomains, i=0):
 
     availabilityResponse = requests.post(url, json=domains, headers=headers)
     resp = json.loads(availabilityResponse.text)
+    domains = resp.get('domains')
 
     try:
-        domains = resp['domains']
         for domain in domains:
-            if domain['available']:
-                print('\033[0;32;49m {}\n'.format(domain['domain']))
+            if domain.get('available'):
+                print('\033[0;32;49m{}'.format(domain['domain']))
                 filteredDomains.append(domain['domain'])
             else:
-                print('\033[0;31;49m {}\n'.format(domain['domain']))
+                print('\033[0;31;49m{}'.format(domain['domain']))
 
         time.sleep(2)
-    except KeyError:
-        print('\033[0;31;49m ERROR API\n')
+    except:
+        if domains is None:
+            print('\033[0;31;49mUNSUPPORTED TLD\033[0;37;49m')
+            exit(1)
+
+        print('\033[0;31;49mERROR API')
         time.sleep(2)
 
         if i <= 1: # can retry twice
