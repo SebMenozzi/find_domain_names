@@ -32,7 +32,7 @@ def chunks(array, size):
    for i in range(0, len(array), size):
       yield array[i:i + size]
 
-def checkDomainsByGoDaddy(domains, filteredDomains, i=0):
+def checkDomains(domains, filteredDomains, i=0):
     url = 'https://api.godaddy.com/v1/domains/available'
     headers = { 'Authorization' : 'sso-key {}:{}'.format(apiKey, secretKey) }
 
@@ -58,15 +58,15 @@ def checkDomainsByGoDaddy(domains, filteredDomains, i=0):
         time.sleep(2)
 
         if i <= 1: # can retry twice
-            checkDomainsByGoDaddy(domains, filteredDomains, i + 1)
+            checkDomains(domains, filteredDomains, i + 1)
 
-def filterDomainsByGoDaddy(domains):
+def filterAvailableDomains(domains):
     chunkSize = 500
     domainChunks = list(chunks(domains, chunkSize))
     filteredDomains = []
 
     for domains in domainChunks:
-        checkDomainsByGoDaddy(domains, filteredDomains)
+        checkDomains(domains, filteredDomains)
 
     return filteredDomains
 
@@ -91,9 +91,9 @@ if __name__ == '__main__':
     maxLength = int(sys.argv[4])
 
     domains = getDomainsFromDico(dico, letter, ext, maxLength)
-    godaddyDomains = filterDomainsByGoDaddy(domains)
+    domains = filterAvailableDomains(domains)
 
-    saveDomains(letter, ext, godaddyDomains)
+    saveDomains(letter, ext, domains)
 
     # reset color terminal
     print('\033[0;37;49m')
