@@ -1,6 +1,6 @@
 # Find the best domain name ever!
 
-# Requirements
+## Requirements
 - Python3.X
 - unicodedata, requests
 
