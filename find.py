@@ -5,6 +5,9 @@ import sys
 import os
 import unicodedata
 
+apiKey = 'dLYx8m4oLWgG_QU5RBF48kyWAcgNv2isKGz'
+secretKey = 'KnUE1FzaFFHczBXCoMLaQW'
+
 def remove_accents(bytes):
     decode = bytes.decode('utf-8')
     nfkd = unicodedata.normalize('NFKD', decode)
@@ -30,10 +33,8 @@ def chunks(array, size):
       yield array[i:i + size]
 
 def checkDomainsByGoDaddy(domains, filteredDomains, i=0):
-    apiKey = 'dLYx8m4oLWgG_QU5RBF48kyWAcgNv2isKGz'
-    secretKey = 'KnUE1FzaFFHczBXCoMLaQW'
     url = 'https://api.godaddy.com/v1/domains/available'
-    headers = { 'Authorization' : 'sso-key {}:{}'.format(apiKey, secretKey)}
+    headers = { 'Authorization' : 'sso-key {}:{}'.format(apiKey, secretKey) }
 
     availabilityResponse = requests.post(url, json=domains, headers=headers)
     resp = json.loads(availabilityResponse.text)
