@@ -18,7 +18,8 @@ def getDomainsFromDico(dico, letter, ext, maxLength):
 
         for word in content.splitlines():
             word = remove_accents(word).decode('utf-8')
-            if len(word) > 0 and len(word) <= maxLength and word[0] == letter:
+            length = len(word)
+            if length > 0 and word[0] == letter and length <= maxLength:
                 domain = '{}.{}'.format(word, ext)
                 domains.append(domain)
 
