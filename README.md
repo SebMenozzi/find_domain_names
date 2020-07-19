@@ -10,7 +10,7 @@
 
 ## Dictionaries
 
-Find more dictionaries : <a href="http://www.gwicks.net/dictionaries.htm">here</a>
+Find more dictionaries <a href="http://www.gwicks.net/dictionaries.htm">here</a>
 
 ## License
 
