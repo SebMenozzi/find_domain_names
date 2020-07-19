@@ -6,7 +6,7 @@
 
 ## Usage
 > - python find.py [dico file] [letter] [extension] [max length of the domain]
-> - exemple: python find.py dico/francais.txt f io 5
+> - example : python find.py dico/francais.txt f io 5
 
 ## Dictionaries
 
