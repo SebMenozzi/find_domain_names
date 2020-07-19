@@ -51,8 +51,7 @@ def checkDomains(domains, filteredDomains, i=0):
         time.sleep(2)
     except:
         if domains is None:
-            print('\033[0;31;49mUNSUPPORTED TLD\033[0;37;49m')
-            exit(1)
+            pass
 
         print('\033[0;31;49mERROR API')
         time.sleep(2)
