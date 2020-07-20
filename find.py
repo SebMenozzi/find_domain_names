@@ -80,7 +80,6 @@ def filterAvailableDomains(domains):
     return filteredDomains
 
 def saveDomains(letter, ext, domains):
-
     if not os.path.exists('results'):
         os.mkdir('results')
 
