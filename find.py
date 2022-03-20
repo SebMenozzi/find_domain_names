@@ -50,7 +50,10 @@ def checkDomains(domains, filteredDomains, queue, i=1):
     try:
         for domain in domains:
             if domain.get('available'):
-                print('\033[0;32;49m{}\033[0;37;49m'.format(domain['domain']))
+                appraisalResponse = requests.get('https://api.godaddy.com/v1/appraisal/{}'.format(domain['domain']))
+                resp2 = json.loads(appraisalResponse.text)
+
+                print('\033[0;32;49m{}\033[0;37;49m ${}'.format(domain['domain'], resp2['govalue']))
                 filteredDomains.append(domain['domain'])
             else:
                 print('\033[0;31;49m{}\033[0;37;49m'.format(domain['domain']))
