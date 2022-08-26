@@ -5,7 +5,7 @@
 - unicodedata, requests
 
 ## Usage
-> - python find.py [dico file] [letter] [extension] [max length of the domain]
+> - ./find.sh [dico file] [letter] [extension] [max length of the domain]
 > - example : python find.py dico/francais.txt f io 5
 
 ## Dictionaries
